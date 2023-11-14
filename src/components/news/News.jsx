@@ -28,8 +28,8 @@ export class News extends Component {
             {(this.state.articles.map((item, index) => {
               return (<div className='col-md-4' key={index}>
                 <NewsItem
-                  title="my title"
-                  discription="abcd" 
+                  title={item.title}
+                  discription={item.description}
                   imageUrl={item.urlToImage}/>
               </div>)
             }))
