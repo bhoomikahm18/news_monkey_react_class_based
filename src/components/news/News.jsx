@@ -36,6 +36,10 @@ export class News extends Component {
             }
           </div>
         }
+        <div className='container d-flex justify-content-between'>
+          <button type='button' className='btn btn-dark'>&larr; Privious</button>
+          <button type='button' className='btn btn-dark'> Next &rarr; </button>
+        </div>
 
       </div>
     )
