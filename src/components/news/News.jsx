@@ -19,7 +19,12 @@ export class News extends Component {
     fetch(
       "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4db083447ccd4921831926d5eecbc2fc"
     ).then(res => res.json()).then(data => {
-      this.setState({ articles: data.articles });
+      this.setState({
+        ...this.state,
+        articles: data.articles,
+        totalArticles: data.totalResuls,
+        loading: false
+      });
     });
   }
 
@@ -28,7 +33,8 @@ export class News extends Component {
     return (
       <div className='container my-3'>
         <h2>NewsMonkey - Top Headlines</h2>
-        {(this.state.articles.length != 0) &&
+
+        {(this.state.loading != true) &&
           <div className='row'>
             {(this.state.articles.map((item, index) => {
               return (<div className='col-md-4' key={index}>
@@ -42,8 +48,8 @@ export class News extends Component {
           </div>
         }
         <div className='container d-flex justify-content-between'>
-          <button type='button' className='btn btn-dark'>&larr; Privious</button>
-          <button type='button' className='btn btn-dark'> Next &rarr; </button>
+          <button type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
+          <button type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
         </div>
 
       </div>
