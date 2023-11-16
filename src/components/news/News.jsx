@@ -27,6 +27,16 @@ export class News extends Component {
       });
     });
   }
+  async handleNextClick() {
+    let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`);
+    let data = await res.json();
+    this.setState({
+        articles: this.state.articles.concat(data.articles),
+        loading: false,
+        page: this.state.page + 1,
+        totalArticles: data.totalResults
+    });
+  }
 
   render() {
     console.log(this.state.articles);
