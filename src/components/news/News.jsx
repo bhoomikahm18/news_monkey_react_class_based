@@ -17,7 +17,7 @@ export class News extends Component {
 
   componentDidMount() {
     fetch(
-      "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4db083447ccd4921831926d5eecbc2fc"
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`
     ).then(res => res.json()).then(data => {
       this.setState({
         ...this.state,
@@ -45,27 +45,27 @@ export class News extends Component {
         <h2 className='text-center' style={{ margin: '90px 0px 40px 0px' }}>News Monkey - Top Headlines</h2>
         {this.state.loading && <Spinner />}
         {(!this.state.loading) &&
-          
-            <div className='row'>
-              {(this.state.articles.map((item, index) => {
-                return (<div className='col-md-4' key={index}>
-                  <NewsItem
-                    title={item.title}
-                    discription={item.description}
-                    imageUrl={item.urlToImage} />
-                </div>)
-              }))
-              }
-            </div>
-        }
-            <div className='container d-flex justify-content-between'>
-              <button disabled={this.state.page <= 1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
-              <button disabled={this.state.page * 10} type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
-            </div>
 
+          <div className='row'>
+            {(this.state.articles.map((item, index) => {
+              return (<div className='col-md-4' key={index}>
+                <NewsItem
+                  title={item.title}
+                  discription={item.description}
+                  imageUrl={item.urlToImage} />
+              </div>)
+            }))
+            }
           </div>
+        }
+        <div className='container d-flex justify-content-between'>
+          <button disabled={this.state.page <= 1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
+          <button disabled={this.state.page * 10} type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
+        </div>
+
+      </div>
     )
   }
 }
 
-        export default News
+export default News
