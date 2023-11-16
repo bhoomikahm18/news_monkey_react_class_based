@@ -29,8 +29,6 @@ export class News extends Component {
       page: 1,
       totalArticles: 0
     };
-    this.handleNextClick = this.handleNextClick.bind(this);
-    this.handlePreviousClick = this.handlePreviousClick.bind(this);
 
     document.title = `${this.capitalizeFirstLetter(this.props.category)} : News Monkey`
   }
@@ -49,7 +47,7 @@ export class News extends Component {
   componentDidMount() {
     this.updateNews(1);
   }
-  async handleNextClick() {
+  fetchMoreData = async () => {
     let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`);
     let data = await res.json();
     this.setState({
