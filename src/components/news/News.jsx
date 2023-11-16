@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewsItem from '../newsItem/NewsItem.jsx';
 import Spinner from '../spinner/Spinner';
 import PropTypes from 'prop-types';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export class News extends Component {
 
