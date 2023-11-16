@@ -42,29 +42,30 @@ export class News extends Component {
     console.log(this.state.articles);
     return (
       <div className='container my-3'>
-        <h2>NewsMonkey - Top Headlines</h2>
-
-        {(this.state.loading != true) &&
-          <div className='row'>
-            {(this.state.articles.map((item, index) => {
-              return (<div className='col-md-4' key={index}>
-                <NewsItem
-                  title={item.title}
-                  discription={item.description}
-                  imageUrl={item.urlToImage} />
-              </div>)
-            }))
-            }
-          </div>
+        <h2 className='text-center' style={{ margin: '90px 0px 40px 0px' }}>News Monkey - Top Headlines</h2>
+        {this.state.loading && <Spinner />}
+        {(!this.state.loading) &&
+          
+            <div className='row'>
+              {(this.state.articles.map((item, index) => {
+                return (<div className='col-md-4' key={index}>
+                  <NewsItem
+                    title={item.title}
+                    discription={item.description}
+                    imageUrl={item.urlToImage} />
+                </div>)
+              }))
+              }
+            </div>
         }
-        <div className='container d-flex justify-content-between'>
-          <button disabled={this.state.page <= 1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
-          <button disabled={this.state.page * 10} type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
-        </div>
+            <div className='container d-flex justify-content-between'>
+              <button disabled={this.state.page <= 1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
+              <button disabled={this.state.page * 10} type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
+            </div>
 
-      </div>
+          </div>
     )
   }
 }
 
-export default News
+        export default News
