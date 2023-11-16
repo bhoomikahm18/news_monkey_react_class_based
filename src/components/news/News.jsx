@@ -31,10 +31,10 @@ export class News extends Component {
     let res = await fetch(`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=bd002a1cf4f64969a8819fcbfe3a190f&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`);
     let data = await res.json();
     this.setState({
-        articles: this.state.articles.concat(data.articles),
-        loading: false,
-        page: this.state.page + 1,
-        totalArticles: data.totalResults
+      articles: this.state.articles.concat(data.articles),
+      loading: false,
+      page: this.state.page + 1,
+      totalArticles: data.totalResults
     });
   }
 
@@ -58,8 +58,8 @@ export class News extends Component {
           </div>
         }
         <div className='container d-flex justify-content-between'>
-          <button type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
-          <button type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
+          <button disabled={this.state.page <= 1} type='button' className='btn btn-dark' onClick={this.handlePreviousClick}>&larr; Privious</button>
+          <button disabled={this.state.page * 10} type='button' className='btn btn-dark' onClick={this.handleNextClick}> Next &rarr; </button>
         </div>
 
       </div>
