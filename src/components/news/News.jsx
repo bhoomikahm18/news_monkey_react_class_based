@@ -3,11 +3,16 @@ import NewsItem from '../newsItem/NewsItem.jsx'
 
 export class News extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      articles: []
-    }
+      articles: null,
+      loading: true,
+      page: 1,
+      totalArticles: 0
+    };
+    this.handleNextClick = this.handleNextClick.bind(this);
+    this.handlePreviousClick = this.handlePreviousClick.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +35,7 @@ export class News extends Component {
                 <NewsItem
                   title={item.title}
                   discription={item.description}
-                  imageUrl={item.urlToImage}/>
+                  imageUrl={item.urlToImage} />
               </div>)
             }))
             }
